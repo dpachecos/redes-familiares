@@ -1,4 +1,3 @@
-version: "3.8"
 services:
   neo4j:
     image: neo4j:latest
@@ -8,7 +7,7 @@ services:
     volumes:
       - neo4j_data:/data
     environment:
-      - NEO4J_AUTH=neo4j/test
+      - NEO4J_AUTH=neo4j/redesfam
     restart: "no"  # El contenedor no iniciará automáticamente con el daemon
 volumes:
   neo4j_data:
