@@ -1,0 +1,9 @@
+[project]
+name = "redes-familiares"
+version = "0.1.0"
+description = "Administra una base de datos de relaciones familiares"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "neo4j-rust-ext>=5.28.1.0",
+]

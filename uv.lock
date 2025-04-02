@@ -1,0 +1,54 @@
+version = 1
+requires-python = ">=3.13"
+
+[[package]]
+name = "neo4j"
+version = "5.28.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pytz" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/4b/20/733dac16f7cedc80b23093415822c9763302519cba0e7c8bcdb5c01fc512/neo4j-5.28.1.tar.gz", hash = "sha256:ae8e37a1d895099062c75bc359b2cce62099baac7be768d0eba7180c1298e214", size = 231094 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/6a/57/94225fe5e9dabdc0ff60c88cbfcedf11277f4b34e7ab1373d3e62dbdd207/neo4j-5.28.1-py3-none-any.whl", hash = "sha256:6755ef9e5f4e14b403aef1138fb6315b120631a0075c138b5ddb2a06b87b09fd", size = 312258 },
+]
+
+[[package]]
+name = "neo4j-rust-ext"
+version = "5.28.1.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "neo4j" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/c3/3d/3591dc784185f401554f07319be27e0bfb6f1ea21873ffe7e73c36ca1be0/neo4j_rust_ext-5.28.1.0.tar.gz", hash = "sha256:cdc3ab18b1f6a292027c3774d67a8874c8cc3623e30a8a2eb1321231bee0966e", size = 16472 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/59/6b/ca30fff9797c79180747eddd44f5d922ab6cbad11cbd71621643a304bc13/neo4j_rust_ext-5.28.1.0-cp313-cp313-macosx_10_12_x86_64.whl", hash = "sha256:ee3fad1082e4fc63b7fec73b8f6b81419dc3f7184da396ef2f17b51b12b44ccd", size = 684340 },
+    { url = "https://files.pythonhosted.org/packages/2e/79/fdd5c289274390cd0955c0897bc697dde34e39ec0c19ce72ccf75f29db58/neo4j_rust_ext-5.28.1.0-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:647ba688559aa9a7c2f435de51be5a91f13083d805cbdd9a991202e0a01fb659", size = 684971 },
+    { url = "https://files.pythonhosted.org/packages/d2/06/e95b57eb0a702e4ad1f60179e26ee5ba062e7ba5bb5bae2ee10637f8f69a/neo4j_rust_ext-5.28.1.0-cp313-cp313-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:da8be00083e16a3ebd9bc56845d50e30eae566bf946a6adfb8d6eefe6add64a4", size = 288630 },
+    { url = "https://files.pythonhosted.org/packages/94/50/0a5b9f9fd88cbc425f329a4e9574b8e35757a567e867fd184258456a5c45/neo4j_rust_ext-5.28.1.0-cp313-cp313-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:7827985480d77773f6c28c1d1e6efc9ea9f87fe65e8454268a1827e07eec7d35", size = 297929 },
+    { url = "https://files.pythonhosted.org/packages/89/4e/ad4e6248bbe1d0b35cda6e46afacb64a4c41efb33c349749ee287e211a1d/neo4j_rust_ext-5.28.1.0-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:730741fcf923224a1be8bb69ba7e43e3701bad5ba94ed6f9c3f262bdb513f9df", size = 289915 },
+    { url = "https://files.pythonhosted.org/packages/de/b2/ce699d1ccc12d5632671a9f89a4c86c7d47882d6b6d7c42f28fea8a25a2d/neo4j_rust_ext-5.28.1.0-cp313-cp313-musllinux_1_2_x86_64.whl", hash = "sha256:1df53acbfd4bc6643117be4e00a86614c211c8db1a5336c3b4f9bb07b4275b5e", size = 458287 },
+    { url = "https://files.pythonhosted.org/packages/a5/bd/c1764483780c115002e13784ff22a429b0201061276afe07d6fd9c474c21/neo4j_rust_ext-5.28.1.0-cp313-cp313-win32.whl", hash = "sha256:c699aa9008b9e8c59acea16746d35716bce33f010c061511857e40fa6c590b50", size = 693407 },
+    { url = "https://files.pythonhosted.org/packages/b1/ba/6ed74bb0e3053c37eba9b46cc868f684cbe1d4858a638179ea125fd65a0c/neo4j_rust_ext-5.28.1.0-cp313-cp313-win_amd64.whl", hash = "sha256:cf48d61a91b2b2045a1dc7b0e8d6e8811769d1d0c832e32a6f037051f43c4c95", size = 643065 },
+    { url = "https://files.pythonhosted.org/packages/2d/17/19f5c541535e8a285bb33fd9573d4d3ea9e7a3bbccf008bfe345b30fd7cb/neo4j_rust_ext-5.28.1.0-cp313-cp313-win_arm64.whl", hash = "sha256:803f55283267337b9b74ee18b7799d8702ea15a934db31a9f462e1d67e895efc", size = 145803 },
+]
+
+[[package]]
+name = "pytz"
+version = "2025.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/f8/bf/abbd3cdfb8fbc7fb3d4d38d320f2441b1e7cbe29be4f23797b4a2b5d8aac/pytz-2025.2.tar.gz", hash = "sha256:360b9e3dbb49a209c21ad61809c7fb453643e048b38924c765813546746e81c3", size = 320884 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/81/c4/34e93fe5f5429d7570ec1fa436f1986fb1f00c3e0f43a589fe2bbcd22c3f/pytz-2025.2-py2.py3-none-any.whl", hash = "sha256:5ddf76296dd8c44c26eb8f4b6f35488f3ccbf6fbbd7adee0b7262d43f0ec2f00", size = 509225 },
+]
+
+[[package]]
+name = "redes-familiares"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "neo4j-rust-ext" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "neo4j-rust-ext", specifier = ">=5.28.1.0" }]
