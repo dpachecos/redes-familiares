@@ -1,48 +1,57 @@
 import argparse
-import subprocess
-from neo4j import GraphDatabase, Driver
+from dataclasses import dataclass, field
+from pathlib import Path
 
-def connect_db() -> Driver:
-    """Conecta a la base de datos Neo4j"""
-    # Levanta el contenedor Neo4j a través de docker-compose antes de crear el driver
-    subprocess.run(["docker-compose", "up", "-d", "neo4j"], check=True)
-    uri = "bolt://localhost:7687"
-    driver = GraphDatabase.driver(uri, auth=("neo4j", "test"))
-    return driver
+from redesfam.importing import import_data
+from redesfam.exporting import export_data
 
-def import_data(file_paths):
-    with connect_db() as driver:
-        # Lógica para leer archivos de texto y cargar datos en Neo4j
-        for path in file_paths:
-            print(f"Importando datos desde {path}")
-            # ...código para leer el archivo e insertar en la base de datos usando driver...
 
-def export_data(output_path):
-    with connect_db() as driver:
-        # Lógica para consultar Neo4j y generar archivo de salida
-        print(f"Exportando datos a {output_path}")
-        # ...código para realizar la consulta y escribir el archivo usando driver...
 
-def main():
+@dataclass
+class MainArgs:
+    command: str
+    files: list[str] = field(default_factory=list)
+    output: str = None
+
+
+def parse_args() -> MainArgs:
+    """Interpreta los argumentos de la línea de comandos"""
     parser = argparse.ArgumentParser(description="Aplicación para procesar archivos y gestionar Neo4j")
-    subparsers = parser.add_subparsers(dest='command')
+    subparsers = parser.add_subparsers(dest='command', required=True)
     
     # Comando "import"
     import_parser = subparsers.add_parser("import", help="Importar archivos de texto a la base de datos")
-    import_parser.add_argument("files", nargs='+', help="Ruta(s) de archivo(s) de entrada")
+    import_parser.add_argument("files", nargs='+', help="Ruta(s) de archivo(s) de entrada", type=Path)
     
     # Comando "export"
     export_parser = subparsers.add_parser("export", help="Exportar datos de la base de datos a un archivo")
-    export_parser.add_argument("output", help="Ruta del archivo de salida")
+    export_parser.add_argument("output", help="Ruta del archivo de salida", type=Path)
     
     args = parser.parse_args()
-    
     if args.command == "import":
-        import_data(args.files)
-    elif args.command == "export":
-        export_data(args.output)
+        out = MainArgs(command=args.command, files=args.files)
     else:
-        parser.print_help()
+        out = MainArgs(command=args.command, output=args.output)
+
+    return out
+
+
+def main():
+    
+    args = parse_args()
+
+    match args.command:
+        case "import":
+            if not args.files:
+                raise ValueError("Error: Se requieren archivos para importar.")
+            import_data(args.files)
+        case "export":
+            if not args.output:
+                raise ValueError("Error: Se requiere un archivo de salida.")
+            export_data(args.output)
+        case _:
+            ValueError("Comando no reconocido.")
+    
 
 if __name__ == "__main__":
     main()
