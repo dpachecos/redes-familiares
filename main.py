@@ -1,5 +1,6 @@
 import argparse
 from dataclasses import dataclass, field
+from enum import Enum
 from pathlib import Path
 
 from redesfam.importing import import_data
@@ -7,17 +8,23 @@ from redesfam.exporting import export_data
 
 
 
+class Command(Enum):
+    """Comandos disponibles para la aplicación"""
+    IMPORT = "import"
+    EXPORT = "export"
+
+
 @dataclass
 class MainArgs:
-    command: str
-    files: list[str] = field(default_factory=list)
-    output: str = None
+    command: Command
+    files: list[Path] = field(default_factory=list)
+    output: Path | None = None
 
 
 def parse_args() -> MainArgs:
     """Interpreta los argumentos de la línea de comandos"""
     parser = argparse.ArgumentParser(description="Aplicación para procesar archivos y gestionar Neo4j")
-    subparsers = parser.add_subparsers(dest='command', required=True)
+    subparsers = parser.add_subparsers(dest='command', help="Comandos disponibles", required=True)
     
     # Comando "import"
     import_parser = subparsers.add_parser("import", help="Importar archivos de texto a la base de datos")
@@ -29,9 +36,9 @@ def parse_args() -> MainArgs:
     
     args = parser.parse_args()
     if args.command == "import":
-        out = MainArgs(command=args.command, files=args.files)
+        out = MainArgs(command=Command.IMPORT, files=args.files)
     else:
-        out = MainArgs(command=args.command, output=args.output)
+        out = MainArgs(command=Command.EXPORT, output=args.output)
 
     return out
 
@@ -41,11 +48,11 @@ def main():
     args = parse_args()
 
     match args.command:
-        case "import":
+        case Command.IMPORT:
             if not args.files:
                 raise ValueError("Error: Se requieren archivos para importar.")
             import_data(args.files)
-        case "export":
+        case Command.EXPORT:
             if not args.output:
                 raise ValueError("Error: Se requiere un archivo de salida.")
             export_data(args.output)
